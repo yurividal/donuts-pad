@@ -10,7 +10,7 @@ module.exports = {
         let p = pad.find(urlParams);
 
         if (!p) {
-            p = pad.save(urlParams, 'This is Empty')
+            p = pad.save(urlParams, '')
         }
         res.json(p);
     },
@@ -24,7 +24,7 @@ module.exports = {
         const pad = new Pad();
         let p = pad.find(urlParams);
         if (!p) {
-            p = pad.save({ path: urlParams, content: 'This is Empty' });
+            p = pad.save({ path: urlParams, content: '' });
         }
         res.render(path.resolve(__dirname, '..') + '/public/content.html', { content: p.content });
 

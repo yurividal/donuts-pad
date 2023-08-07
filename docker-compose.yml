@@ -4,6 +4,8 @@ services:
     donuts:
         container_name: donuts
         restart: always
-        image: valcinei/donuts:release-1.0.0
+        image: donuts-pad
         ports: 
             - 3132:3131
+        volumes:
+            - ./src/public/index.html:/usr/src/app/src/public/index.html

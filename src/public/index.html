@@ -1,90 +1,200 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <head>
+    <link rel="icon" type="image/x-icon" href="/assets/favicon.png" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <script src="/socket.io.js"></script>
-    <link rel="stylesheet" href="/css/bootstrap.min.css" >
-    <title>DonutsPad</title>
-</head>
-<body>
-  <div class="container text-center">
-    <h1>DonutsPad</h1>
-    <form onsubmit="onGo(event)">
-        <div class="input-group  input-group-lg mb-3 ">
-            <input type="text" class="form-control" id="input-go" placeholder="Enter with an subdoman" aria-label="Enter with an subdoman" aria-describedby="button-addon2">
-            <div class="input-group-append">
-              <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Go</button>
-            </div>
-          </div>
-      </form>
-      <div class="container text-left sub-header">
-        <div>
-            Dont login, just use a URL
-        </div>
-        <div>
-            Dont save, text is auto-saved
-        </div>
-        <div>
-            Dont juggle attached files, edit online with your friends
-        </div>
-        <div>
-            Dont lose your content, download with YourURL.zip
-        </div>
-        <div>
-            Dont forget, you can use yourURL/yourFolder/yourSubfolder
-        </div>
-         <div>
-             Donuts! :)
-         </div>
-         <div class="text-center">
-           🍩🍩🍩🍩🍩🍩🍩🍩🍩🍩🍩🍩🍩🍩
-        </div>
-      </div>
-      <a target="_blank" href="https://github.com/valcinei/donuts-pad">
-        <img src="/assets/github-logo.png" alt="">
-        Contribute
-        </a>
-  </div>
-</body>
-<style>
-    body{
+    <link rel="stylesheet" href="/css/bootstrap.min.css" />
+    <title>Donuts-Pad</title>
+    <style>
+      body {
         margin: 0;
         padding: 0;
-      
-    }
-    textarea{
-        font-size: 22px;
-        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         height: 100vh;
-        margin: 0;
-        padding: 0;
-    }
-    .sub-header{
-        font-size: 28px;
-    }
-    a:link{
-        text-decoration: none;
-    }
-</style>
-<script>
-    window.onload = function(){
-        const socket = io();
-        socket.on('connect', function(){});
-        socket.on('event', function(data){});
-        socket.on('disconnect', function(){});
-        socket.on('update',(data)=>{
-            document.querySelector('#input-area').value = data.content;
-        })
-        window.socket = socket;
-    }
-    
-    function onGo(event){
-        event.preventDefault();
-        const content = document.querySelector('#input-go').value;
-        window.location.replace(`/${content}`);
-    }
+      }
+      .container {
+        text-align: center;
+      }
 
-</script>
+      .title {
+        margin-bottom: 100px;
+        text-align: center;
+        font-size: 7.5vmin;
+        line-height: 5.5vmin;
+      }
+      .form-group {
+        #width: 33%;
+        max-width: 50%;
+        margin: 0 auto;
+        display: flex;
+      }
+      .form-control {
+        flex: 1;
+        font-size: 2.4vmin;
+        #color: #000;
+        border: 0.5px solid #4d4d4d;
+        border-radius: 0 0.6vmin 0.6vmin 0;
+        padding: 0.8vmin 0.6vmin 0.8vmin 1vmin;
+        width: 16vw;
+        height: 4.4vh;
+        box-sizing: border-box;
+      }
+
+      .form-control.dark {
+        flex: 1;
+        font-size: 2.4vmin;
+        #color: #000;
+        background-color: #1a1a1a;
+        border: 0.5px solid #4d4d4d;
+        border-radius: 0 0.6vmin 0.6vmin 0;
+        padding: 0.8vmin 0.6vmin 0.8vmin 1vmin;
+        width: 16vw;
+        height: 4.4vh;
+        box-sizing: border-box;
+      }
+      .btn {
+        line-height: 2.6vmin;
+        font-size: 2.2vmin;
+        padding-block: 0.9vh 0.8vh;
+        padding-inline: 2vh;
+        border-radius: 0.6vmin;
+        margin-left: 0.8vw;
+        cursor: pointer;
+        color: #ddd;
+        background-color: #333;
+        border: 0.5px solid #333;
+        height: 4.4vh;
+        box-sizing: border-box;
+      }
+      .input-group-append {
+        flex: none;
+      }
+      .sub-header {
+        font-size: 28px;
+        margin-top: 30px;
+      }
+      a:link {
+        text-decoration: none;
+      }
+      /* Dark mode styles */
+      body.dark {
+        background-color: #1a1a1a;
+        color: #fff;
+      }
+      body.dark .container.text-left.sub-header {
+        color: #ccc;
+      }
+      body.dark a {
+        filter: invert(100%);
+      }
+      .github-logo {
+        position: absolute;
+        bottom: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+      .prefix {
+        font-size: 2.4vmin;
+        border: 0.5px solid #4d4d4d;
+        border-right: none;
+        border-radius: 0.6vmin 0 0 0.6vmin;
+        padding: 0 1vmin 0 1.6vmin;
+        margin: 0;
+        display: flex;
+        height: 4.4vh;
+        line-height: 1;
+        align-items: center;
+        box-sizing: border-box;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container text-center">
+      <h1 class="title">Ohana DontPad</h1>
+      <br />
+      <form onsubmit="onGo(event)">
+        <div class="form-group">
+          <p class="prefix" id="current-url"></p>
+
+          <input
+            type="text"
+            class="form-control"
+            id="input-go"
+            placeholder="your-secret-page"
+            aria-label="Enter with an subdomain"
+            aria-describedby="button-addon2"
+          />
+          <div class="input-group-append">
+            <button
+              class="btn btn-outline-secondary"
+              type="submit"
+              id="button-addon2"
+            >
+              Go!
+            </button>
+          </div>
+        </div>
+      </form>
+      <div class="container sub-header">
+        <div>No login required</div>
+        <div>No save required. Input is auto-saved</div>
+        <div>Resets every 24h</div>
+      </div>
+      <a
+        target="_blank"
+        href="https://github.com/valcinei/donuts-pad"
+        class="github-logo"
+      >
+        <img src="/assets/github-logo.png" alt="GitHub Logo" />
+      </a>
+    </div>
+  </body>
+  <script>
+    window.onload = function () {
+      const socket = io();
+      socket.on("connect", function () {});
+      socket.on("event", function (data) {});
+      socket.on("disconnect", function () {});
+      socket.on("update", (data) => {
+        document.querySelector("#input-area").value = data.content;
+      });
+      window.socket = socket;
+
+      // Detect browser dark mode and toggle dark class accordingly
+      const prefersDarkMode = window.matchMedia("(prefers-color-scheme: dark)");
+      if (prefersDarkMode.matches) {
+        document.body.classList.add("dark");
+      }
+    };
+
+    function onGo(event) {
+      event.preventDefault();
+      const content = document.querySelector("#input-go").value;
+      window.location.replace(`/${content}`);
+    }
+  </script>
+  <script>
+    // JavaScript code to display the current URL
+    document.addEventListener("DOMContentLoaded", function () {
+      // Get the current URL using the window.location object
+      var currentURL = window.location.href;
+
+      // Remove "https://" from the URL
+      currentURL = currentURL.replace("https://", "");
+
+      // Remove "http://" from the URL as well (if present)
+      currentURL = currentURL.replace("http://", "");
+
+      // Get the <p> element by its ID
+      var urlParagraph = document.getElementById("current-url");
+
+      // Set the text content of the <p> element to the current URL
+      urlParagraph.textContent = currentURL;
+    });
+  </script>
 </html>
