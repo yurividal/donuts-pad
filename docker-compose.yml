@@ -7,5 +7,5 @@ services:
         image: donuts-pad
         ports: 
             - 3132:3131
-        volumes:
-            - ./src/public/index.html:/usr/src/app/src/public/index.html
+#        volumes:
+#           - ./src/public/index.html:/usr/src/app/src/public/index.html
