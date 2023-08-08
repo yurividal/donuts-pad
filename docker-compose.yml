@@ -5,7 +5,10 @@ services:
         container_name: donuts
         restart: always
         image: donuts-pad
-        ports: 
+        ports:
             - 3132:3131
-#        volumes:
-#           - ./src/public/index.html:/usr/src/app/src/public/index.html
+            #volumes:
+            ### Use the volume bellow if you want to customize the home page
+            #- ./src/public/index.html:/usr/src/app/src/public/index.html
+            ### Use the volume bellow if you want to keep notes persistent on the container.
+            #- ./data/db.json:/usr/src/app/db.json

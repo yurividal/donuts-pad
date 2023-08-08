@@ -36,19 +36,19 @@
       .form-control {
         flex: 1;
         font-size: 2.4vmin;
-        #color: #000;
+        background-color: #ccc;
         border: 0.5px solid #4d4d4d;
         border-radius: 0 0.6vmin 0.6vmin 0;
         padding: 0.8vmin 0.6vmin 0.8vmin 1vmin;
         width: 16vw;
         height: 4.4vh;
         box-sizing: border-box;
+        font-style: italic;
       }
 
       .form-control.dark {
         flex: 1;
         font-size: 2.4vmin;
-        #color: #000;
         background-color: #1a1a1a;
         border: 0.5px solid #4d4d4d;
         border-radius: 0 0.6vmin 0.6vmin 0;
@@ -111,11 +111,25 @@
         align-items: center;
         box-sizing: border-box;
       }
+      @media only screen and (max-device-width: 480px) {
+        .form-group {
+          max-width: 100%;
+          margin: 0 auto;
+          display: flex;
+        }
+        .form-control {
+          font-size: initial;
+        }
+        .sub-header {
+          font-size: 20px;
+          margin-top: 50px;
+        }
+      }
     </style>
   </head>
   <body>
     <div class="container text-center">
-      <h1 class="title">Donut-Pad</h1>
+      <h1 class="title">Donuts-Pad</h1>
       <br />
       <form onsubmit="onGo(event)">
         <div class="form-group">
@@ -128,6 +142,7 @@
             placeholder="your-secret-page"
             aria-label="Enter with an subdomain"
             aria-describedby="button-addon2"
+            autofocus
           />
           <div class="input-group-append">
             <button
